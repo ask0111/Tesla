@@ -1,0 +1,19 @@
+.mainDiv {
+    width: 100%;
+    display: flex;
+  }
+  .upperDiv {
+    width: 80%;
+    display: flex;
+    margin: auto;
+    justify-content: center;
+  }
+  .lowerDiv {
+    margin: 14px;
+    /* width: 100%; */
+    /* color: gray; */
+  }
+  h2 {
+    margin: 18px 0;
+  }
+  

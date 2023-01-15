@@ -1,0 +1,38 @@
+.orderBoxButtons {
+    /* border: 1px solid red; */
+    margin-top: 45vh;
+    width: 100%;
+  }
+  .orderButtons {
+    display: flex;
+    /* border: 1px solid green; */
+    justify-content: space-between;
+    width: 40%;
+    margin: auto;
+    text-align: center;
+    font-size: 20px;
+  }
+  .leftButton {
+    width: 44%;
+    background-color: black;
+    color: white;
+    border-radius: 8px;
+    padding: 10px;
+  }
+  .rightButton {
+    width: 44%;
+    border-radius: 8px;
+    background-color: gray;
+    color: black;
+    padding: 10px;
+  }
+  .center {
+    width: 400px;
+    border-radius: 8px;
+    background-color: black;
+    color: white;
+    padding: 10px;
+    margin: auto;
+    font-size: 20px;
+  }
+  

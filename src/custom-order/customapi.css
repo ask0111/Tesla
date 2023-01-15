@@ -1,0 +1,95 @@
+.hadder-inventory {
+    width: 100%;
+    margin-top: 60px;
+    background-color: rgb(252, 255, 246);
+    /* border: 1px solid red; */
+  }
+  .inventory-part {
+    width: 100%;
+    background-color: rgb(230, 236, 255);
+  }
+  .inventory-part div {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+  }
+  select {
+    width: 130px;
+    height: 20px;
+  }
+  
+  .inventory-part1 {
+    width: 90%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .carbox {
+    margin: 20px;
+    width: 90%;
+    /* border: 1px solid red; */
+    font-size: 14px;
+    background-color: white;
+  }
+  
+  .uppermodel,
+  .lowermodel {
+    width: 100%;
+    display: flex;
+  }
+  
+  .uppermodel div,
+  .lowermodel div {
+    /* border: 1px solid red; */
+    width: 60%;
+    margin: 0 6px;
+    padding-left: 10px;
+    margin: auto;
+  }
+  
+  .uppermodel div h2,
+  .lowermodel div h2 {
+    margin: 0;
+  }
+  
+  .uppermodel div ~ div {
+    width: 30%;
+  }
+  .middelmodel {
+    width: 100%;
+  }
+  .middelmodel img {
+    width: 100%;
+  }
+  button {
+    padding: 14px;
+    /* margin-top: 18px; */
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    width: 100%;
+    cursor: pointer;
+  }
+  
+  .solar-roof-main {
+    margin-top: 2%;
+    width: 100%;
+    display: flex;
+    /* text-align: center; */
+  }
+  .solar-roof-main1 {
+    width: 70%;
+  }
+  
+  form {
+    margin: auto;
+    /* width: 60%; */
+    /* border: 1px solid red; */
+  }
+  img {
+    width: 100%;
+    /* height: 90vh; */
+  }
+  
