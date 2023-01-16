@@ -1,19 +1,166 @@
 {
   "posts": [
     {
+      "name": "Hariom",
+      "surname": "Yadav",
+      "email": "hariomask0111@gmail.com",
+      "passward": "q",
       "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    }
-  ],
-  "comments": [
+      "use": [
+        {
+          "name": "D"
+        }
+      ]
+    },
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "name": "Hariom",
+      "surname": "Yadav",
+      "email": "hariomas0111@gmail.com",
+      "passward": "d",
+      "id": 2
+    },
+    {
+      "name": "Hariom",
+      "surname": "Yadav",
+      "email": "hariomas111@gmail.com",
+      "passward": "1",
+      "id": 3
+    },
+    {
+      "name": "Hariom",
+      "surname": "Yadav",
+      "email": "hariomask011@gmail.com",
+      "passward": "c",
+      "id": 4
+    },
+    {
+      "name": "Hariom",
+      "surname": "Yadav",
+      "email": "hriomask0111@gmail.com",
+      "passward": "q",
+      "id": 5
     }
   ],
-  "profile": {
-    "name": "typicode"
-  }
+  "user": [
+    {
+      "model": "2020 Model Y",
+      "submodel": "Model Y Long Range All-Wheel Drive",
+      "content": "51,267 mile odometer Rogers, MN",
+      "image": "https://static-assets.tesla.com/configurator/compositor?&bkba_opt=2&view=STUD_3QTR&size=1400&model=my&options=$APF2,$APBS,$DV4W,$INYPB,$PMNG,$PRMY1,$SC04,$MDLY,$WY19B,$MTY03,$STY5S,$CPF0,$FM3U&crop=1400,850,300,130&",
+      "price": "$51,700",
+      "p": 51700,
+      "rate": "$818 /mo",
+      "detail": [
+        [
+          "4.2s",
+          "0-60mph"
+        ],
+        [
+          "135mph",
+          "Top Speed"
+        ],
+        [
+          "326mi",
+          "range(est.)"
+        ]
+      ],
+      "id": 2
+    },
+    {
+      "model": "2020 Model 3",
+      "submodel": "Model 3 Standard Range Plus Rear-Wheel Drive",
+      "content": "25,854 mile odometer      Roswell, GA",
+      "image": "https://static-assets.tesla.com/configurator/compositor?&bkba_opt=2&view=STUD_3QTR&size=1400&model=m3&options=$APBS,$DV2W,$IN3B2,$PPSW,$PRM30,$SC04,$MDL3,$W38B,$MT308,$CPF0,$RSF1&crop=1400,850,300,130&",
+      "price": "$34,500",
+      "p": 34500,
+      "rate": " Transport Fee: $2,500",
+      "detail": [
+        [
+          "5.3s",
+          "0-60mph"
+        ],
+        [
+          "140mph",
+          "Top Speed"
+        ],
+        [
+          "240mi",
+          "range(est.)"
+        ]
+      ],
+      "id": 3
+    },
+    {
+      "model": "2020 Model 3",
+      "submodel": "Model 3 Standard Range Plus Rear-Wheel Drive",
+      "content": "25,854 mile odometer      Roswell, GA",
+      "image": "https://static-assets.tesla.com/configurator/compositor?&bkba_opt=2&view=STUD_3QTR&size=1400&model=m3&options=$APBS,$DV2W,$IN3B2,$PPSW,$PRM30,$SC04,$MDL3,$W38B,$MT308,$CPF0,$RSF1&crop=1400,850,300,130&",
+      "price": "$34,500",
+      "p": 34500,
+      "rate": " Transport Fee: $2,500",
+      "detail": [
+        [
+          "5.3s",
+          "0-60mph"
+        ],
+        [
+          "140mph",
+          "Top Speed"
+        ],
+        [
+          "240mi",
+          "range(est.)"
+        ]
+      ],
+      "id": 4
+    },
+    {
+      "model": "2020 Model 3",
+      "submodel": "Model 3 Standard Range Plus Rear-Wheel Drive",
+      "content": "25,854 mile odometer      Roswell, GA",
+      "image": "https://static-assets.tesla.com/configurator/compositor?&bkba_opt=2&view=STUD_3QTR&size=1400&model=m3&options=$APBS,$DV2W,$IN3B2,$PPSW,$PRM30,$SC04,$MDL3,$W38B,$MT308,$CPF0,$RSF1&crop=1400,850,300,130&",
+      "price": "$34,500",
+      "p": 34500,
+      "rate": " Transport Fee: $2,500",
+      "detail": [
+        [
+          "5.3s",
+          "0-60mph"
+        ],
+        [
+          "140mph",
+          "Top Speed"
+        ],
+        [
+          "240mi",
+          "range(est.)"
+        ]
+      ],
+      "id": 5
+    },
+    {
+      "model": "2020 Model 3",
+      "submodel": "Model 3 Standard Range Plus Rear-Wheel Drive",
+      "content": "25,854 mile odometer      Roswell, GA",
+      "image": "https://static-assets.tesla.com/configurator/compositor?&bkba_opt=2&view=STUD_3QTR&size=1400&model=m3&options=$APBS,$DV2W,$IN3B2,$PPSW,$PRM30,$SC04,$MDL3,$W38B,$MT308,$CPF0,$RSF1&crop=1400,850,300,130&",
+      "price": "$34,500",
+      "p": 34500,
+      "rate": " Transport Fee: $2,500",
+      "detail": [
+        [
+          "5.3s",
+          "0-60mph"
+        ],
+        [
+          "140mph",
+          "Top Speed"
+        ],
+        [
+          "240mi",
+          "range(est.)"
+        ]
+      ],
+      "id": 6
+    }
+  ]
 }

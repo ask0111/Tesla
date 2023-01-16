@@ -75,7 +75,7 @@ export default function Navbar() {
         </div>
         <div>
           <Link to="/teslaaccount" style={deco}>
-            <b>Menu</b>
+            <b>User</b>
           </Link>
         </div>
       </div>

@@ -3,8 +3,20 @@ import "../dashboard/dashboard";
 import { Link } from "react-router-dom";
 import Foot from "../../account/foot";
 import Userboard from "../dashboard/userbord";
+import { useState } from "react";
 
 export default function Orderhistory() {
+  const [car, setCar] = useState([]);
+
+  fetch('http://localhost:3000/user', 
+     {
+       method: 'GET',
+       headers: {'Content-type': 'application/json'}, 
+     }
+   ).then((res)=> res.json()).then((data)=>{setCar(data)});
+   
+ 
+
   return (
     <>
       <Navbar />
@@ -22,6 +34,16 @@ export default function Orderhistory() {
                 <Link>View</Link>
               </div>
             </div>
+            {car.map((data)=> <div className="dasimgparts">
+              <div className="dasimgpart">
+                <img src={data.image} />
+              </div>
+              <div>
+                <h2>{data.model}</h2>
+                <h4>{data.content}</h4>
+                <Link><h3>{data.price}</h3></Link>
+              </div>
+            </div>)}
           </div>
         </div>
       </div>

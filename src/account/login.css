@@ -9,7 +9,7 @@
     /* border: 1px solid red; */
     width: 25%;
     margin: auto;
-    padding: 10px;
+    padding: 13px;
     overflow-x: hidden;
     box-shadow: 0 1px 2px rgb(221, 221, 221);
   }
@@ -19,12 +19,13 @@
   input,
   button {
     font-size: 18px;
-    width: 101%;
+    width: 95%;
     padding: 8px;
     margin: 8px 0;
     border: none;
     border-radius: 2px;
     background-color: rgb(240, 240, 252);
+    /* background-color: rgb(104, 104, 214); */
   }
   
   p {
@@ -41,5 +42,6 @@
   
   label {
     font-size: 20px;
+    margin-left: 3px;
   }
   

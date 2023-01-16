@@ -1,7 +1,28 @@
-import { useState } from "react";
+import { useState, createContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import Navbar from "../hadder/navbar";
 import "./customapi.css";
+
+
+const AuthContext1 = createContext();
+
+function Context1(props) {
+    
+    var car = JSON.parse(localStorage.getItem('car'));
+    // console.log(car,'local storage get')
+    
+
+  return (
+    <>
+      <AuthContext1.Provider value={car}>{props.children}</AuthContext1.Provider>
+    </>
+  );
+}
+
+
+export { AuthContext1 };
+export { Context1 };
+
 
 export default function Customapi(props) {
   const [carData, setCarData] = useState("ascending");
@@ -15,7 +36,16 @@ export default function Customapi(props) {
   let selectChange = (event) => {
     setCarData(event.target.value);
   };
-  console.log(carData);
+
+
+  const cardetail = (data)=>{
+    // Context1();
+    localStorage.setItem('car', JSON.stringify(data))
+    
+  }
+
+
+  // console.log(carData);
   return (
     <>
       <Navbar />
@@ -66,7 +96,9 @@ export default function Customapi(props) {
                 <button
                   onClick={() => {
                     console.log(data);
+                    cardetail(data);
                     history.push("/card-payment");
+                    window.location.reload();
                   }}
                 >
                   Add Card
@@ -79,3 +111,7 @@ export default function Customapi(props) {
     </>
   );
 }
+
+
+
+

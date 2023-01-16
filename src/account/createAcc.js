@@ -1,8 +1,8 @@
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import "./login.css";
 import Navacc from "./loginnav";
 import Footer from "./foot";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useContext } from "react";
 import {AuthContext} from '../stores/context'
 
@@ -15,32 +15,51 @@ export default function Login() {
     const [user, setUser] = useState();
 
     const usersData = useContext(AuthContext)
-    console.log(usersData, 'jjjjj')
-
+    console.log(usersData)
+    var history = useHistory();
+  
     function singhup(){
-        fetch('http://localhost:3000/posts', {method: 'POST', headers: { 'Content-type': 'application/json; charset=UTF-8'}, body: JSON.stringify(user)}).then((res)=> { if(res.status){alert('successfully added in server..')}}).catch((e)=> alert('e', e));
-    }
+         fetch('http://localhost:3000/posts', 
+          {
+            method: 'POST',
+            headers: {'Content-type': 'application/json'}, 
+            body: JSON.stringify(user)
+          }
+        ).then((res)=> { if(res.status){ alert('Account Created successfully..')}});
+        
+      }
 
-    const submitUser = (e)=>{
+      useEffect(()=>{
+        if(user){
+          singhup();
+        }
+      },[user])
+      
+      const submitUser =  (e)=>{
         e.preventDefault();
+        let bool = 1;
         usersData.map((user)=>{
             if(user.email == email){
-                return ;
+                bool = 0;
             }
         })
+        if(!bool){
+          return alert('This User Already Exist..')
+        }
+
         if(!name || !surname || !email || !passward || !cpassward){
-            return alert("All field should be filled");
+          return alert("All field should be filled");
         }
         if(passward == cpassward){
-            setUser({name: name, surname: surname, email: email, passward: passward});
-            console.log(user, 'ppppp')
-            singhup();
-            setName(''); setEmail(''); setPassward(''); setSurname(''); setCpassward('')
-        }
+          setUser({name: name, surname: surname, email: email, passward: passward})
+          setName(''); setEmail(''); setPassward(''); setSurname(''); setCpassward('') 
+          history.push("/teslaaccount/profile-settings");
+          window.location.reload();
+          }
+        
         else{
             return alert("Passward Not Matched...");
         }
-        return alert("Successfully Submitted")
     }
 
   return (
@@ -66,7 +85,7 @@ export default function Login() {
               account
             </p>
            
-            <input type="submit" value="Create Account" />
+            <input style={{width: '99%', backgroundColor: 'rgb(104, 104, 214)'}} type="submit" value="Create Account" />
           </form>
         </div>
       </div>

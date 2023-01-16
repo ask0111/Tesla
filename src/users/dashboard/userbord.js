@@ -1,7 +1,14 @@
 import "./dashboard.css";
 import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 export default function Userboard() {
+  var history = useHistory()
+  const signhout = ()=>{
+    history.push('/');
+    localStorage.removeItem('user');
+  }
+
+
   const location = useLocation();
   console.log(location.pathname[location.pathname.length - 1]);
   const [isBold, setBold] = useState();
@@ -59,7 +66,7 @@ export default function Userboard() {
             <h1 style={{ color: isBold == "y" && "black" }}>Order History</h1>
           </div>
         </Link>
-        <Link to="/" style={{ textDecoration: "none" }}>
+        <Link onClick={signhout} style={{ textDecoration: "none" }}>
           <div className="dasparts">
             <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAclBMVEX///8AAAD09PTGxsbc3NzZ2dnn5+eJiYnBwcGDg4O/v7+8vLyLi4vHx8diYmL39/elpaUtLS3Pz89JSUltbW07OzsnJydUVFSUlJR+fn7w8PB2dnacnJytra1DQ0O1tbVRUVFkZGQdHR0UFBQpKSk1NTWxy5+gAAAFRklEQVR4nO2dbVfqMAyAB4hTAcGB8iII+PL//+IV5GJatjXFJm168nzzuNP2oVvbdVtSFIqiKIqiKIqiKIqiKIqiKIqiSGY8mrzunjq0vMxfJ9U4hl538kbsBplOVsx+1SOj3g/zEaNff8rud2DaZ/Ibv0bxOzDrcghW0fwOVPSC66iCnc6CWnAfWfD7TKUV5B9CL3mkFNzHtjuypxMsY7udKKkE7y7rmpabQY+SwWZYM/kOaAS7dj1vW5714nh7IUmzhrNGmRfOVVRlLfDnFJX0zDrI5yWLhVn9A0EV5q/I2YE/mGup9/AVmMPMTfgKnNwYLdgGL9+4G2RYHdZg9OJz6NKNH3ASunQkE9iI0LdSQ8qfD80XaMV94LJfCH89PH3Qio+wRd+Condhi/ZiDtpxG7TkASj5LmjJfsARPexoCi/DoAX7AtqxDFowWLGR3p75NCTsyu0z/lTxA9hECbusSeQyNAeEoAUnMVccqBgMYyxJf4HTVtC7UzVkQw2vRg3ZUMOrUUM21PBq1JANNbwaeYar9XLps88hzvB0p4zfupZmeN4KQN+vCzMER2EVhRnCR3HI53BJGja/IGU8zMUpJmnYfJT5uBp1oiZjCFry2XyQ9eIWphfTMbw/N6Rl43ZlGmJ6MR3D4uPUjre2gyaWorsXEzLsPh+b4Xi4YL/c5OzFhAyLohouF85W2IquXkzKEIdnLwo09FSUaOinKNLQS1Gmoc9wI9TQoxelGuIVxRqiFeUaYhUFGyIVJRviFEUbohRlG2IUhRsiFKUbuhXFGzoV5Ru6FDMwdCjmYGi8JHugB/+ZheGFIuzFPAzbFDMxbFHMxfBC8XzXn41hYy/mY3ihePoeNSPDhhOVwXDcZaJY1vUiueEDZywYmwcGw1k0uyN35Ib24z52VtSG0cz+UxIbxg0Ic+CJ2LAmWAM3xIb9xoq5+Mr+OhzqWPpnIs+HFcOaZksdu6+NQwgM8CfVupRrWdot7GhsxxgfDIZs3NcJ5mRoC5523PIxbBDMx7BJMBvDRsFcDG3B7PZL7e2L7Pa8bcHsnlu0nKJFFobNg8wR+YbtPZiBoaMH5Ru6elC8obMHpRsiBGUbYgRFG6IEJRu6B5kjcg1xPSjYECso1hAtKNXQftGrWVCoYf2uWj0iDfGnaCHT0EtQoqHPKVokZjgqZwtnbMPWLYsaEjK8/Qkm/Ngeu8UWdMYfT8fwHN2/NV5z68uytaRjuD83ZNN80I0liIggn4whSNDQ0onWTO/uwYQM4UsNzUfNvQVFG6IEpRmW3oLSDG+8BaUZ/s4WWEFxhqc3dD7wYZ3FGRarTTn0SSkkz9AXNWRDDa9GDdlQw6tRQzbU8GrUkA01vBpQbpy8ef8hyzPz/ltu+MSDPpDlCgKpTtdBC/YFxF59CloweIGfJMkpGrCLFjZ5GAxbG7RgX0A7wiZAhIlkKdK4YoGXYdi0xzAw7y5oyX7A1Mdh8x8a+THTyGH5ErhseCHGy0MKP/8KnXIZRgqPNmEYYboDn6RFsYOlx1nXjGATprTFR1mcml8LE4zoz0YF/Hm5zcznXwQ1WB/Nc+dWt57Mk1wne7OOL85Jo7I+ot2T1DLuWEy3QbP1NFe8vQh80pza4k/07Hq+JcvNoEfJYFPWxHVBPxX0xX5LJRaEY0Dkz+ZPkOZc3se265AnlX50t4AYmmEUEPtaZJiH4waTYVlLjeONNzOiefCCfpzQY1PWVRT/iLPjXuzfrjk78m0d/IYXw3i0mE3drfsbn/PXxd0qhp6iKIqiKIqiKIqiKIqiKIqiKEnyD7daQEdAOAYMAAAAAElFTkSuQmCC" />
             <h1 style={{ color: isBold == "t" && "black" }}>Sign Out</h1>
