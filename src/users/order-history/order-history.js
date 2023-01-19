@@ -3,19 +3,35 @@ import "../dashboard/dashboard";
 import { Link } from "react-router-dom";
 import Foot from "../../account/foot";
 import Userboard from "../dashboard/userbord";
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
+import { AuthContext } from "../../stores/context";
 
 export default function Orderhistory() {
+  const userData = useContext(AuthContext);
   const [car, setCar] = useState([]);
 
-  fetch('http://localhost:3000/user', 
-     {
-       method: 'GET',
-       headers: {'Content-type': 'application/json'}, 
-     }
-   ).then((res)=> res.json()).then((data)=>{setCar(data)});
-   
- 
+  function Userhistory(){
+    console.log(car, 'check')
+    let userId = Object.keys(userData == null ? {} : userData);
+    userId.map((id)=>{
+      fetch(`https://tesla-e3c24-default-rtdb.firebaseio.com/userDetails/${id}.json`
+    ).then((res)=> res.json()).then(user => {
+      if(user.login){
+  setTimeout(()=>{
+
+        setCar(user.history);
+      }, 2000)
+      }
+    });
+    
+  });
+}
+useEffect(()=>{
+  Userhistory();
+
+    console.log(car, 'check1')
+  
+}, [])
 
   return (
     <>
@@ -34,14 +50,14 @@ export default function Orderhistory() {
                 <Link>View</Link>
               </div>
             </div>
-            {car.map((data)=> <div className="dasimgparts">
+            {car.map((data, i)=> <div key={i} className="dasimgparts">
               <div className="dasimgpart">
                 <img src={data.image} />
               </div>
               <div>
                 <h2>{data.model}</h2>
                 <h4>{data.content}</h4>
-                <Link><h3>{data.price}</h3></Link>
+                <Link><h3 style={{marginTop: '-20px'}}>{data.price}</h3></Link>
               </div>
             </div>)}
           </div>

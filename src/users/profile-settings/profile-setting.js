@@ -4,25 +4,33 @@ import { Link } from "react-router-dom";
 import Foot from "../../account/foot";
 import Userboard from "../dashboard/userbord";
 import { AuthContext } from "../../stores/context";
-import { useContext, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
 
 export default function Dashboard() {
   var usersDat = useContext(AuthContext);
   var pdata = useRef();
   pdata = {name: 'None', surname: '', email: 'None', passward: ''};
-  var userdata = JSON.parse(localStorage.getItem('user'));
+  
   
   if(usersDat){
-    usersDat.map((data)=>{
-      //  console.log(userdata, data, 'llll');
-      if(userdata?.email == data.email){
+    let b = 0;
+    console.log(usersDat, 'dat')
+    var usersdat = Object.values(usersDat);
+    usersdat?.map((data)=>{
+      if(data.login){
         console.log(data)
-        // setProfileuser(data);
+        b=1;
         pdata = data;
       }
     })
+    if(b===0){
+     
+    }
   }
   
+  useEffect(()=>{
+    pdata = {name: 'None', surname: '', email: 'None', passward: ''};
+  }, [pdata])
   
   return (
     <>
@@ -34,7 +42,7 @@ export default function Dashboard() {
           <div className="dassubmain2">{ pdata &&
             <form style={{marginTop: '40px', height: '300px'}}>
               <label >User Full Name</label>
-              <input value={pdata?.name +" "+ pdata?.surname} disabled/>
+              <input value={pdata.name +" "+ pdata.surname} disabled/>
               <label >User Email ID</label>
               <input value={pdata?.email} disabled/>
               <label >User Password</label>

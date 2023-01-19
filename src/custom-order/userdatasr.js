@@ -8,12 +8,14 @@ import { useState } from "react";
 export default function UserDataSR() {
   const [home, setHome] = useState({name: ' ', image: ' '});
   let history = useHistory();
+
   const Submit = (event) => {
     event.preventDefault();
     localStorage.setItem('car', JSON.stringify(home))
     history.push("/card-payment");
     window.location.reload()
   };
+  
   return (
     <>
       <Navbar />

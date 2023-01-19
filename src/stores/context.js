@@ -5,7 +5,7 @@ export default function Context(props) {
     const [usersDatas, setUsersdata] = useState();
     
     function DataTransfer(){
-        fetch('http://localhost:3000/posts').then((res)=> res.json()).then((data)=> setUsersdata(data));
+        fetch('https://tesla-e3c24-default-rtdb.firebaseio.com/userDetails.json').then((res)=> res.json()).then((data)=> setUsersdata(data));
     }
     useEffect(()=>{
         DataTransfer();

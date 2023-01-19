@@ -2,7 +2,6 @@ import { Link, useHistory} from "react-router-dom";
 import "./login.css";
 import Navacc from "./loginnav";
 import Footer from "./foot";
-// import { useHistory } from "react-router-dom";
 import {AuthContext} from '../stores/context'
 import { useState, useContext } from "react";
 
@@ -12,31 +11,55 @@ export default function Login() {
   var history = useHistory();
   const [email, setEmail] = useState();
   const [password, setpassword] = useState();
-  const [user, setuser] = useState();
 
-  const LoginHandler= (e)=>{
-    // e.preventDefault();
-    let bool = 0;
-    usersData.map((data)=>{
-      console.log(data.email, email, data.passward, password)
-      if(data.email == email && data.passward == password){
-        bool = 1;
-      }
-    })
-    setuser({email: email, password: password});
-    if(!email && !password){
-      return alert('Fill All Fields..')
-    }else if(bool){
-      localStorage.setItem('user', JSON.stringify({email: email, password: password, user: true}));
-      history.push('/teslaaccount')
-     
-    }else{
-      return alert('Email or Password Invalid..')
+
+  var usersdata1 = Object.keys(usersData == null ? {} : usersData);
+  console.log(usersdata1, 'ids')
+  
+  
+  const LoginHandler= async (e)=>{
+    e.preventDefault();
+
+    function Happy(id, b){
+      console.log(id, b)
+      fetch(`https://tesla-e3c24-default-rtdb.firebaseio.com/userDetails/${id}.json`, 
+        {
+          method: 'PATCH',
+          headers: {'Content-type': 'application/json'}, 
+          body: JSON.stringify({"login": b})
+        }
+      ).then(res=> console.log(res)).catch((err)=> console.log(err))
     }
-    return alert('Login Successfully..')
+
+    if(!email || !password){
+      return alert('Fill All Fields..')
+    }
+
+    let bool = false, jump = 0;
+     usersdata1?.map((id)=> {fetch(`https://tesla-e3c24-default-rtdb.firebaseio.com/userDetails/${id}.json`).then((res)=> res.json())
+        .then(data=> {
+          if(data.email === email && data.passward === password){
+            console.log('Yes')
+            bool = true;
+            jump = 1;
+          }else{
+            bool = false;
+          }
+          Happy(id, bool);
+        });
+      });
+      setTimeout(()=>{
+        // if(jump){ 
+        //   history.push('/teslaaccount')
+        // }else{
+        //    alert('Email or Password Invalid..')
+        // }
+        window.location.reload();
+      }, 10000)
+      
+      return alert('Login Successfully..')
   }
 
-  var history = useHistory();
   const AccHandler = () => {
     history.push("/signup");
   };

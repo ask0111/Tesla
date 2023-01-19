@@ -1,4 +1,4 @@
-import { useState, createContext, useEffect } from "react";
+import { useState, createContext } from "react";
 import { useHistory } from "react-router-dom";
 import Navbar from "../hadder/navbar";
 import "./customapi.css";
@@ -6,12 +6,9 @@ import "./customapi.css";
 
 const AuthContext1 = createContext();
 
-function Context1(props) {
-    
+function Context1(props) {    
     var car = JSON.parse(localStorage.getItem('car'));
     // console.log(car,'local storage get')
-    
-
   return (
     <>
       <AuthContext1.Provider value={car}>{props.children}</AuthContext1.Provider>

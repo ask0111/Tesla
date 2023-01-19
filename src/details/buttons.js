@@ -1,9 +1,26 @@
 import "../footer/footer.css";
 import { useHistory } from "react-router-dom";
+import { AuthContext } from "../stores/context";
+import { useContext } from "react";
+
 export default function Button() {
   let history = useHistory();
+  let userData = useContext(AuthContext);
   const Inventory = () => {
-    history.push("/models/inventory-s-series");
+    var b=0;
+    var userArr = Object.values(userData == null ? {} : userData);
+    userArr.map((data)=>{
+      if(data.login){
+        b=1;
+        history.push("/models/inventory-s-series");
+      }
+    })
+    setTimeout(()=>{
+      if(b==0){
+        alert('Login..');
+        history.push("/signin");
+      }
+    }, 3000)
   };
   return (
     <div

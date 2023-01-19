@@ -2,9 +2,9 @@ import { Link, useHistory } from "react-router-dom";
 import "./login.css";
 import Navacc from "./loginnav";
 import Footer from "./foot";
-import { useEffect, useState } from "react";
-import { useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import {AuthContext} from '../stores/context'
+
 
 export default function Login() {
     const [name, setName] = useState();
@@ -14,53 +14,74 @@ export default function Login() {
     const [cpassward, setCpassward] = useState();
     const [user, setUser] = useState();
 
-    const usersData = useContext(AuthContext)
-    console.log(usersData)
     var history = useHistory();
-  
+    const usersData = useContext(AuthContext);
+    console.log(usersData, 'llllll');
+    if(usersData){
+      var usersdata = Object.values(usersData);
+      var usersdata1 = Object.keys(usersData);
+
+    }
+    
+
+
+    
+    
     function singhup(){
-         fetch('http://localhost:3000/posts', 
+     
+      console.log(user, 'database')
+
+      fetch('https://tesla-e3c24-default-rtdb.firebaseio.com/userDetails.json', 
+        {
+          method: 'POST',
+          headers: {'Content-type': 'application/json'}, 
+          body: JSON.stringify(user)
+        }
+      ).then((res)=> { if(res.status){ alert('Account Created successfully..')}});
+    }
+
+    useEffect(()=>{
+      if(user){
+        usersdata1?.map((id)=> {fetch(`https://tesla-e3c24-default-rtdb.firebaseio.com/userDetails/${id}.json`, 
           {
-            method: 'POST',
+            method: 'PATCH',
             headers: {'Content-type': 'application/json'}, 
-            body: JSON.stringify(user)
+            body: JSON.stringify({"login": false})
           }
-        ).then((res)=> { if(res.status){ alert('Account Created successfully..')}});
-        
-      }
-
-      useEffect(()=>{
-        if(user){
-          singhup();
-        }
-      },[user])
-      
-      const submitUser =  (e)=>{
-        e.preventDefault();
-        let bool = 1;
-        usersData.map((user)=>{
-            if(user.email == email){
-                bool = 0;
-            }
-        })
-        if(!bool){
-          return alert('This User Already Exist..')
-        }
-
-        if(!name || !surname || !email || !passward || !cpassward){
-          return alert("All field should be filled");
-        }
-        if(passward == cpassward){
-          setUser({name: name, surname: surname, email: email, passward: passward})
-          setName(''); setEmail(''); setPassward(''); setSurname(''); setCpassward('') 
+        ).then((res)=> res.json()).then(data => console.log(data));
+        });
+        singhup();
+        setTimeout(()=>{
           history.push("/teslaaccount/profile-settings");
           window.location.reload();
+        }, 3000)
+      }  
+    },[user])
+      
+      
+    const submitUser =  (e)=>{
+      e.preventDefault(); 
+      let bool = 1;
+
+      usersdata?.map((user)=>{
+          if(user && user?.email === email){
+              bool = 0;
           }
-        
-        else{
-            return alert("Passward Not Matched...");
-        }
-    }
+          // user.login = false
+      });
+
+      if(!bool){
+        return alert('This User Already Exist..')
+      }else if(!name || !surname || !email || !passward || !cpassward){
+        return alert("All field should be filled");
+      }else if(passward === cpassward){
+        setUser({login: true, history: [{model: 'Next Record'}], name: name, surname: surname, email: email, passward: passward});
+        setName(''); setEmail(''); setPassward(''); setSurname(''); setCpassward('') ;
+      }else{
+          return alert("Passward Not Matched...");
+      }
+  }
+  
 
   return (
     <>

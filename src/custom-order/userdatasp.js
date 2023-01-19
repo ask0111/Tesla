@@ -2,17 +2,19 @@ import Navbar from "../account/loginnav";
 import { Link, useHistory } from "react-router-dom";
 import { useState } from "react";
 
-
 import "./customapi.css";
 export default function UserDataSR() {
   const [home, setHome] = useState({name: ' ', image: ' '});
   let history = useHistory();
+
   const Submit = (event) => {
+    
     event.preventDefault();
     localStorage.setItem('car', JSON.stringify(home))
     history.push("/card-payment");
     window.location.reload()
   };
+
   return (
     <>
       <Navbar />
