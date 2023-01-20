@@ -30,8 +30,13 @@ export default function Dashboard() {
   
   useEffect(()=>{
     pdata = {name: 'None', surname: '', email: 'None', passward: ''};
+    
   }, [pdata])
   
+  
+  useEffect(()=>{
+    // window.location.reload();
+  }, [])
   return (
     <>
       <Navbar />

@@ -1,7 +1,14 @@
 import { Link, useLocation } from "react-router-dom";
 import "./navbar.css";
+import { AuthContext } from "../stores/context";
+import { useContext, useState } from "react";
+import { useEffect } from "react";
 
 export default function Navbar() {
+  const [isUser, setIsuser] = useState({is: false, name: 'None'});
+  const user = useContext(AuthContext);
+  const userl = Object.values(user == null ? {} : user);
+
   let deco = {
     color: "black",
     textDecorationLine: "none"
@@ -12,6 +19,16 @@ export default function Navbar() {
   if (locate.pathname === "/model3" || locate.pathname === "/solarroof") {
     deco.color = "white";
   }
+
+  useEffect(()=>{
+    
+    userl?.map((data)=>{
+      if(data.login){
+        setIsuser({is: true, name: data.name[0] +" "+ data.surname[0]});
+      }
+    })
+  },[])
+  
   return (
     <div className="main-boxs">
       <div className="main-box">
@@ -75,10 +92,12 @@ export default function Navbar() {
         </div>
         <div>
           <Link to="/teslaaccount" style={deco}>
-            <b>User</b>
+            {(isUser.is && <div style={{textAlign: 'center'}}> <b style={{width: '40px', height: '30px', borderRadius: '40%', border: '1px solid black', display: 'flex', backgroundColor: 'rgb(236, 206, 150)', justifyContent: 'center', alignItems: 'center', fontSize: '23px', color: 'black'}}>{isUser.name}</b></div>) || (<b>User</b>)}
+            
           </Link>
         </div>
       </div>
     </div>
   );
 }
+// fontSize: '23px'

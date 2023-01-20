@@ -50,7 +50,9 @@ useEffect(()=>{
                 <Link>View</Link>
               </div>
             </div>
-            {car.map((data, i)=> <div key={i} className="dasimgparts">
+            {  
+            car.map((data, i)=> <div key={i} className="dasimgparts">
+                <p style={{textAlign: 'center', color: 'gray'}}>{"Ordered No. " + (i+1)}</p>
               <div className="dasimgpart">
                 <img src={data.image} />
               </div>
@@ -59,7 +61,9 @@ useEffect(()=>{
                 <h4>{data.content}</h4>
                 <Link><h3 style={{marginTop: '-20px'}}>{data.price}</h3></Link>
               </div>
-            </div>)}
+            </div>)
+
+            }
           </div>
         </div>
       </div>

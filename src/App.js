@@ -74,7 +74,7 @@ export default function App(props) {
         <Orderhistory />
       </Route>
       <Route path="/shop" exact>
-        <Shop />
+        <Shop a={UserDatas()} b={UserData3()} c={UserDatax()} d={UserDatay()}/>
       </Route>
       <Route path="/models/inventory-s-series" exact>
         <Customapi props={UserDatas()} />

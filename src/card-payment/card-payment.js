@@ -9,28 +9,11 @@ export default function CardPayment() {
   const userData = useContext(AuthContext);
   const singleCar = useContext(AuthContext1);
   const [bool, setBool] = useState();
-  console.log(singleCar, 'l');
-  // localStorage.setItem('car', JSON.stringify(ata));
-
-  // const cardetail = (data)=>{
-  //   let userId = Object.keys(userData == null ? {} : userData);
-  //   userId.map((id)=>{
-  //     fetch(`https://tesla-e3c24-default-rtdb.firebaseio.com/userDetails/${id}.json`
-  //   ).then((res)=> res.json()).then(user => {
-  //     if(user.login){
-  //       fetch(`https://tesla-e3c24-default-rtdb.firebaseio.com/userDetails/${id}.json`, 
-  //         {
-  //           method: 'PATCH',
-  //           headers: {'Content-type': 'application/json'}, 
-  //           body: JSON.stringify({history: [...user?.history, data]})
-  //         }
-  //       )
-  //     }
-  //       });
-      
-  //   });
-    
-  // }
+  const [cardname, setCardname] = useState();
+  const [cardnumber, setCardnumber] = useState();
+  const [cardmonth, setCardmonth] = useState();
+  const [cardyear, setCardyear] = useState();
+  const [cardcvv, setCardcvv] = useState();
 
   function patch(singleCar, id, user){
     fetch(`https://tesla-e3c24-default-rtdb.firebaseio.com/userDetails/${id}.json`, 
@@ -39,14 +22,20 @@ export default function CardPayment() {
       headers: {'Content-type': 'application/json'}, 
       body: JSON.stringify({'history': [ singleCar, ...user.history]})
     }
-  ).then(res=> {alert('Patchdata'); history('/teslaaccount/order-history')})
-  console.log(user,id, 'sc')
+  ).then(res=> {alert('Payment Successfully..'); setBool(false); history.push('/teslaaccount/order-history');});
+  
+  // console.log(user,id, 'sc')
   }
 
   
 
   function singhup(e){
     e.preventDefault();
+    if(!cardname || !cardnumber || !cardmonth || !cardyear || !cardcvv){
+      return alert('All Field Should Be Filled...')
+    }
+    alert("OTP ****" );
+    setBool(true);
     console.log(singleCar, 'scar')
     let userId = Object.keys(userData == null ? {} : userData);
     userId.map((id)=>{
@@ -58,16 +47,7 @@ export default function CardPayment() {
         });
       
     });
-    // var t = JSON.parse(localStorage.getItem('car'));
-
-  //   fetch('http://localhost:3000/posts/1', 
-  //    {
-  //      method: 'POST',
-  //      headers: {'Content-type': 'application/json'}, 
-  //      body: JSON.stringify(t)
-  //    }
-  //  ).then((res)=> { if(res.status){ alert('Car Buied successfully..')}});
-   
+  
  }
 
 //  useEffect(()=>{
@@ -91,20 +71,21 @@ export default function CardPayment() {
           <img src={singleCar?.image} />
         </div>
         <div style={{ width: "40%" }} className="solar-roof-main2">
-          <form style={{ width: "80%" }} onSubmit={(e)=> {alert("OTP ****" ); setBool(true); singhup(e)} }>
+          <form style={{ width: "80%" }} onSubmit={(e)=> {singhup(e)} }>
             <h1 style={{margin: '40px 44%', width: '150px'}}>Card</h1>
             <h2 style={{margin: '40px 35%', width: '150px'}}>{singleCar.model}</h2>
             <label>Name on Card</label>
-            <input type="text" minLength={3}/>
+            <input value={cardname} onChange={(e)=> setCardname(e.target.value)} type="text" minLength={3}/>
             <label>Card Number</label>
-            <input type="number" minLength={16} maxLength={16}/>
+            <input value={cardnumber} onChange={(e)=> setCardnumber(e.target.value)} type="number"  min={1000000000000000} max={999999999999999999}/>
             <label>Expiration Month</label>
-            <input type="number" maxLength={2}/>
+            <input value={cardmonth} onChange={(e)=> setCardmonth(e.target.value)} type="number" min={1} max={12}/>
             <label>Expiration Year</label>
-            <input type="number" minLength={4} maxLength={4}/>
+            <input value={cardyear} onChange={(e)=> setCardyear(e.target.value)} type="number" min={1990} maxLength={9999}/>
             <label>CVV</label>
-            <input type="number" minLength={3} maxLength={3}/>
-            {bool && <input value={Math.floor(Math.random()*10000)} type="text" minLength={3} maxLength={3}/>}
+            <input value={cardcvv} onChange={(e)=> setCardcvv(e.target.value)} type="number" min={100} maxLength={999}/>
+            {bool && (<><label>OTP: </label>
+             <input value={Math.floor(Math.random()*10000)} type="text" minLength={3} maxLength={3}/></>)}
             <w>Non-refundable Order Deposit.Non-transferable.</w>
             <input
               type="submit"

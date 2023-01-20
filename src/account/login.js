@@ -4,6 +4,7 @@ import Navacc from "./loginnav";
 import Footer from "./foot";
 import {AuthContext} from '../stores/context'
 import { useState, useContext } from "react";
+import { useEffect } from "react";
 
 
 export default function Login() {
@@ -11,7 +12,7 @@ export default function Login() {
   var history = useHistory();
   const [email, setEmail] = useState();
   const [password, setpassword] = useState();
-
+  const [check, setCheck] = useState(false);
 
   var usersdata1 = Object.keys(usersData == null ? {} : usersData);
   console.log(usersdata1, 'ids')
@@ -34,31 +35,32 @@ export default function Login() {
     if(!email || !password){
       return alert('Fill All Fields..')
     }
-
-    let bool = false, jump = 0;
-     usersdata1?.map((id)=> {fetch(`https://tesla-e3c24-default-rtdb.firebaseio.com/userDetails/${id}.json`).then((res)=> res.json())
-        .then(data=> {
-          if(data.email === email && data.passward === password){
-            console.log('Yes')
-            bool = true;
-            jump = 1;
-          }else{
-            bool = false;
-          }
-          Happy(id, bool);
-        });
-      });
-      setTimeout(()=>{
-        // if(jump){ 
-        //   history.push('/teslaaccount')
-        // }else{
-        //    alert('Email or Password Invalid..')
-        // }
-        window.location.reload();
-      }, 10000)
-      
-      return alert('Login Successfully..')
-  }
+    var c=0;
+      usersdata1?.map((id)=> {fetch(`https://tesla-e3c24-default-rtdb.firebaseio.com/userDetails/${id}.json`).then((res)=> res.json())
+         .then(data=> {
+          console.log(data.email === email, data.passward === password, id)
+           if(data.email == email && data.passward == password){
+             Happy(id, true);
+             setCheck(true);
+             c=0;
+           }else{
+             Happy(id, false);
+             // bool = false;
+             c++;
+           }
+         });
+       });
+       if(c === usersdata1.length){
+        return alert('Email or Password Invalid');
+       }
+       return (alert('Login Successfully..'))
+      }
+      if(check){
+         setTimeout(()=>{
+           window.location.reload();
+          }, 500)
+          history.push('/teslaaccount/profile-settings')
+       }
 
   const AccHandler = () => {
     history.push("/signup");
