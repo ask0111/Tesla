@@ -11,7 +11,7 @@ export default function Orderhistory() {
   const [car, setCar] = useState([]);
 
   function Userhistory(){
-    console.log(car, 'check')
+    // console.log(car, 'check')
     let userId = Object.keys(userData == null ? {} : userData);
     userId.map((id)=>{
       fetch(`https://tesla-e3c24-default-rtdb.firebaseio.com/userDetails/${id}.json`
@@ -29,7 +29,7 @@ export default function Orderhistory() {
 useEffect(()=>{
   Userhistory();
 
-    console.log(car, 'check1')
+    // console.log(car, 'check1')
   
 }, [])
 

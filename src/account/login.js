@@ -15,7 +15,7 @@ export default function Login() {
   const [check, setCheck] = useState(false);
 
   var usersdata1 = Object.keys(usersData == null ? {} : usersData);
-  console.log(usersdata1, 'ids')
+  // console.log(usersdata1, 'ids')
   
   
   const LoginHandler= async (e)=>{
@@ -29,7 +29,7 @@ export default function Login() {
           headers: {'Content-type': 'application/json'}, 
           body: JSON.stringify({"login": b})
         }
-      ).then(res=> console.log(res)).catch((err)=> console.log(err))
+      ).then(res=> console.log(res.status)).catch((err)=> console.log(err))
     }
 
     if(!email || !password){
@@ -38,7 +38,7 @@ export default function Login() {
     var c=0;
       usersdata1?.map((id)=> {fetch(`https://tesla-e3c24-default-rtdb.firebaseio.com/userDetails/${id}.json`).then((res)=> res.json())
          .then(data=> {
-          console.log(data.email === email, data.passward === password, id)
+          // console.log(data.email === email, data.passward === password, id)
            if(data.email == email && data.passward == password){
              Happy(id, true);
              setCheck(true);

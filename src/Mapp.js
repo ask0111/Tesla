@@ -27,7 +27,7 @@ export default function Mapp() {
       if (Math.floor(window.scrollY / 780) >= imgArr.length - 1) {
         setval({ Name: imgArr[imgArr.length - 1].model, bool: false });
       } else {
-        console.log(Math.floor(window.scrollY / 780), "kkk");
+        // console.log(Math.floor(window.scrollY / 780), "kkk");
         setval({
           Name: imgArr[Math.floor(window.scrollY / 780)].model,
           dis: imgArr[Math.floor(window.scrollY / 780)].text,
@@ -45,7 +45,7 @@ export default function Mapp() {
     //   removeEventListener("scroll", handleScroll);
     // };
   });
-  console.log(val.jump, "lplp");
+  // console.log(val.jump, "lplp");
   return (
     <>
       <div style={Float}>
@@ -55,7 +55,7 @@ export default function Mapp() {
           <Sbutton Name={val.jump} />
         )}
       </div>
-      <div style={{ margin: "-9px", padding: "0px", border: "1px solid red" }}>
+      <div style={{ margin: "-9px", padding: "0px" }}>
         {imgArr.map((ele) => {
           return (
             <div>

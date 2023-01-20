@@ -3,6 +3,7 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import Context from "./stores/context";
 import {Context1} from "./custom-order/custom-api";
+import './styles.css'
 const rootElement = document.getElementById("root");
 
 const root = createRoot(rootElement);

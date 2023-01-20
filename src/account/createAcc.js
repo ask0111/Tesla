@@ -16,7 +16,7 @@ export default function Login() {
 
     var history = useHistory();
     const usersData = useContext(AuthContext);
-    console.log(usersData, 'llllll');
+    // console.log(usersData, 'llllll');
     if(usersData){
       var usersdata = Object.values(usersData);
       var usersdata1 = Object.keys(usersData);
@@ -29,7 +29,7 @@ export default function Login() {
     
     function singhup(){
      
-      console.log(user, 'database')
+      // console.log(user, 'database')
 
       fetch('https://tesla-e3c24-default-rtdb.firebaseio.com/userDetails.json', 
         {

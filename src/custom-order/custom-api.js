@@ -58,9 +58,9 @@ export default function Customapi(props) {
         </div>
 
         <div className="inventory-part1">
-          {api.sort(sortMethods[carData].method).map((data) => {
+          {api.sort(sortMethods[carData].method).map((data, i) => {
             return (
-              <div className="carbox">
+              <div key={i} className="carbox">
                 <div className="uppermodel">
                   <div className="modelbox">
                     <h2>{data.model}</h2>
@@ -92,7 +92,6 @@ export default function Customapi(props) {
                 </div>
                 <button
                   onClick={() => {
-                    console.log(data);
                     cardetail(data);
                     history.push("/card-payment");
                     window.location.reload();

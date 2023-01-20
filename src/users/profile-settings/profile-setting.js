@@ -14,11 +14,11 @@ export default function Dashboard() {
   
   if(usersDat){
     let b = 0;
-    console.log(usersDat, 'dat')
+    // console.log(usersDat, 'dat')
     var usersdat = Object.values(usersDat);
     usersdat?.map((data)=>{
       if(data.login){
-        console.log(data)
+        // console.log(data)
         b=1;
         pdata = data;
       }
@@ -34,9 +34,6 @@ export default function Dashboard() {
   }, [pdata])
   
   
-  useEffect(()=>{
-    // window.location.reload();
-  }, [])
   return (
     <>
       <Navbar />

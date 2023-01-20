@@ -24,8 +24,19 @@ import UserDatas from "./custom-order/userdatas";
 import UserData3 from "./custom-order/userdata3";
 import UserDataSP from "./custom-order/userdatasp";
 import UserDataSR from "./custom-order/userdatasr";
+import './styles.css'
+import { useEffect, useState } from "react";
 
 export default function App(props) {
+  const [width, setWidth] = useState();
+  useEffect(()=>{
+    setWidth(window.innerWidth);
+    if(window.innerWidth < 1300){
+      alert('This is not available for less than 1300px window-width-size..')
+      alert('Please open in full window size')
+    }
+    // console.log(window.innerWidth)
+  }, [])
   return (
     <switch>
       <Route path="/" exact>

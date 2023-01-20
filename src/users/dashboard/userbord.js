@@ -26,12 +26,12 @@ export default function Userboard() {
 
 
   const location = useLocation();
-  console.log(location.pathname[location.pathname.length - 1]);
+  // console.log(location.pathname[location.pathname.length - 1]);
   const [isBold, setBold] = useState();
   useEffect(() => {
     setBold(location.pathname[location.pathname.length - 1]);
   }, [isBold]);
-  console.log(isBold, "e");
+  // console.log(isBold, "e");
   return (
     <>
       <div className="dassubmain1">

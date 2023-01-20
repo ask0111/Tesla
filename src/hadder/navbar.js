@@ -14,7 +14,7 @@ export default function Navbar() {
     textDecorationLine: "none"
   };
   var locate = useLocation();
-  console.log(locate.pathname);
+  // console.log(locate.pathname);
 
   if (locate.pathname === "/model3" || locate.pathname === "/solarroof") {
     deco.color = "white";

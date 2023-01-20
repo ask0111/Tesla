@@ -1,6 +1,6 @@
 import Navbar from "../account/loginnav";
 import {AuthContext1} from '../custom-order/custom-api'
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../stores/context";
 import { useHistory } from "react-router-dom";
 
@@ -36,9 +36,9 @@ export default function CardPayment() {
     }
     alert("OTP ****" );
     setBool(true);
-    console.log(singleCar, 'scar')
+    // console.log(singleCar, 'scar')
     let userId = Object.keys(userData == null ? {} : userData);
-    userId.map((id)=>{
+    userId?.map((id)=>{
       fetch(`https://tesla-e3c24-default-rtdb.firebaseio.com/userDetails/${id}.json`
       ).then((res)=> res.json()).then(user => {
         if(user.login){

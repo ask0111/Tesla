@@ -18,3 +18,9 @@
     display: none;
   }
   
+  @media all and (min-width: 0px) and (max-width: 1300px){
+    switch{
+      display: none;
+      /* conte1px solid red; */
+    }
+  }

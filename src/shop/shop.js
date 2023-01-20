@@ -27,7 +27,7 @@ export default function Shop(a) {
   let userData = useContext(AuthContext);
   const [carData, setCarData] = useState("ascending");
   const [useris, setIs] = useState(false);
-  console.log(a.a, a.b, a.c, a.d)
+  // console.log(a.a, a.b, a.c, a.d)
   let api = [...a.a, ...a.b, ...a.c, ...a.d];
  
 
@@ -51,13 +51,11 @@ export default function Shop(a) {
         b++;
       }
     })
-    // setTimeout(()=>{
+    
       if(b && b == userArr.length){
         alert('Login..');
         history.push("/signin");
       }
-    // }, 3000)
-    // Context1();
     localStorage.setItem('car', JSON.stringify(data))
     
   }
@@ -79,9 +77,9 @@ export default function Shop(a) {
         </div>
 
         <div className="inventory-part1">
-          {api.sort(sortMethods[carData].method).map((data) => {
+          {api.sort(sortMethods[carData].method).map((data, i) => {
             return (
-              <div className="carbox">
+              <div key={i} className="carbox">
                 <div className="uppermodel">
                   <div className="modelbox">
                     <h2>{data.model}</h2>
@@ -113,9 +111,7 @@ export default function Shop(a) {
                 </div>
                 <button
                   onClick={() => {
-                    console.log(data);
                     cardetail(data);
-                    // history.push("/card-payment");
                     window.location.reload();
                   }}
                 >
