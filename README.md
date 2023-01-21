@@ -20,7 +20,7 @@
 
 # Project Link
 > - [Firebase](https://tesla-e3c24.web.app/)
-> - [Github](https://zoomcarclone.hashnode.dev/zoomcarclone)
+> - [Github](https://github.com/ask0111/Tesla)
 
 
 <p align="center"><b># Website Preview</b></p>
@@ -56,4 +56,4 @@
 
 
 
-## etc.
+# Thank You
